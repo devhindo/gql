@@ -1,15 +1,40 @@
-# gql
+# GraphQL Games API
 
-To install dependencies:
+A simple GraphQL API built with Apollo Server, featuring games, authors, and reviews data.
 
-```bash
-bun install
-```
+## Installation
 
-To run:
+1. Clone the repository.
+2. Install dependencies:
+   ```sh
+   bun install
+   ```
+3. Run the server:
+   ```sh
+   bun run index.ts
+   ```
 
-```bash
-bun run index.ts
-```
+The server will start at `http://localhost:4000`.
 
-This project was created using `bun init` in bun v1.3.2. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+## Schema
+
+The GraphQL schema is defined in [`schema.ts`](schema.ts ), including types for [`Game`](index.ts ), [`Review`](index.ts ), [`Author`](index.ts ), and mutations for managing games.
+
+## Queries
+
+- [`games`](_db.ts ): Fetch all games.
+- [`game(id: ID!)`](index.ts ): Fetch a specific game by ID.
+- [`authors`](_db.ts ): Fetch all authors.
+- [`author(id: ID!)`](index.ts ): Fetch a specific author by ID.
+- [`reviews`](_db.ts ): Fetch all reviews.
+- [`review(id: ID!)`](index.ts ): Fetch a specific review by ID.
+
+## Mutations
+
+- [`addGame(game: AddGameInput!)`](index.ts ): Add a new game.
+- [`deleteGame(id: ID!)`](index.ts ): Delete a game by ID.
+- [`updateGame(id: ID!, edits: EditGameInput!)`](index.ts ): Update a game.
+
+## Data
+
+Sample data is stored in [`_db.ts`](_db.ts ).
