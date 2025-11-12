@@ -39,13 +39,30 @@ const resolvers = {
             return db.reviews.filter(review => review.author_id === parent.id);
         }
     },
-    
+
     Review: {
         game(parent: { game_id: string }) {
             return db.games.find(game => game.id === parent.game_id);
         },
         author(parent: { author_id: string }) {
             return db.authors.find(author => author.id === parent.author_id);
+        }
+    },
+
+    Mutation: {
+        deleteGame(_: any, args: { id: string }) {
+            db.games = db.games.filter(game => game.id !== args.id);
+            return db.games;
+        },
+
+        addGame(_: any, args: { game: { title: string, platform: string[] } }) {
+            const newGame = {
+                id: String(db.games.length + 1),
+                title: args.game.title,
+                platform: args.game.platform
+            };
+            db.games.push(newGame);
+            return newGame;
         }
     },
 }
