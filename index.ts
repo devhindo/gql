@@ -63,7 +63,17 @@ const resolvers = {
             };
             db.games.push(newGame);
             return newGame;
-        }
+        },
+
+        updateGame(_: any, args: { id: string, edits: { title?: string, platform?: string[] } }) {
+            db.games = db.games.map(game => {
+                if (game.id === args.id) {
+                    return { ...game, ...args.edits };
+                }
+                return game;
+            });
+            return db.games.find(game => game.id === args.id);
+        },
     },
 }
 
